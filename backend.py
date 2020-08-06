@@ -26,6 +26,14 @@ def search(email,password):
 def insert_in_post(user,user_name,user_email,date,multimedia):
     conn = sqlite3.connect("blogging.db")
     cur = conn.cursor()
-    cur.execute("INSERT INTO users VALUES(NULL,?,?,?,?,?,?,?)",(email,password,name,address,city,state,zip))
+    cur.execute("INSERT INTO posts VALUES(NULL,?,?,?,?,?)",(user,user_name,user_email,date,multimedia))
     conn.commit()
     conn.close()
+
+def display_all_posts():
+    conn = sqlite3.connect('blogging.db')
+    cur = conn.cursor()
+    cur.execute("Select * from posts")
+    rows = cur.fetchall()
+    conn.close()
+    return rows

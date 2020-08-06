@@ -12,30 +12,24 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Hi! {{name}}</a>
+  <a class="navbar-brand" href="#">Hi {{name}}!</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-      <from action='gotohome' method='get'>
-        <button type="submit" name='home' class="btn btn-secondary btn-sm">Home</button>
-      </form>
+        <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-      <form action='gotonewpost' method='get'>
-        <button type="submit" class="btn btn-secondary btn-sm">Post Something</button>
-      </form>
+        <a class="nav-link" href="./newpost.html">Post something</a>
       </li>
       <li class="nav-item">
-      <form method='get' action='gotoallposts'>
-        <button type="submit" class="btn btn-secondary btn-sm">View your posts</button>
-      </form>
+        <a class="nav-link" href="./viewall.html">view your posts</a>
       </li>
     </ul>
     <form action='logout' method='post'>
-      <button type="submit" class="btn btn-secondary btn-lg">Logout</button>
+    <button type="submit" class="btn btn-secondary btn-lg">Logout</button>
     </form>
   </div>
 </nav>

@@ -41,18 +41,18 @@ def login():
     rows = backend.search(data['email'],data['password'])
     if len(rows)==1:
         session['user_id'] = get_fname(rows[0][3])
-        return redirect('/dashboard.html/' + session['user_id'])
+        return redirect('/dashboard.html')
     else:
         return redirect('/')
 
-@app.route('/dashboard.html/<string:name>')
-def dashboard(name):
+@app.route('/dashboard.html')
+def dashboard():
     if 'user_id' in session:
         return render_template('dashboard.html',name=session['user_id'])
     else:
         return redirect('/index.html')
 
-@app.route('/dashboard.html/logout',methods=['POST'])
+@app.route('/logout',methods=['POST'])
 def logout():
     session.pop('user_id')
     return redirect('/index.html')
@@ -66,9 +66,18 @@ def gotohome():
 def gotonewpost():
     return redirect('/newpost.html/'+session['user_id'])
 
-@app.route('/newpost.html/<string:name>')
-def opennewpost(name):
-    return render_template('newpost.html',name=session['user_id'])
+@app.route('/newpost.html')
+def opennewpost():
+    if 'user_id' in session:
+        return render_template('newpost.html',name=session['user_id'])
+    else:
+        return redirect('/index.html')
 
+@app.route('/viewall.html')
+def viewall():
+    if 'user_id' in session:
+        return render_template('viewall.html',name=session['user_id'])
+    else:
+        return redirect('/index.html')
 
 app.run(debug=True)
