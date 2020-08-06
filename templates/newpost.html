@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Hi! {{name}}</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+      <from action='gotohome' method='get'>
+        <button type="submit" name='home' class="btn btn-secondary btn-sm">Home</button>
+      </form>
+      </li>
+      <li class="nav-item">
+      <form action='gotonewpost' method='get'>
+        <button type="submit" class="btn btn-secondary btn-sm">Post Something</button>
+      </form>
+      </li>
+      <li class="nav-item"> 
+      <form action='gotoallposts' method='get'>
+        <button type="submit" class="btn btn-secondary btn-sm">View your posts</button>
+      </form>
+      </li>
+    </ul>
+    <form action='logout' method='post'>
+      <button type="submit" class="btn btn-secondary btn-lg">Logout</button>
+    </form>
+  </div>
+</nav>
+
+<form action='addapost' method='post'>
+  
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Whaterever you want to share: </label>
+    <textarea class="form-control" name='text' id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlFile1">Share a photo</label>
+    <input type="file" class="form-control-file" name='photo' id="exampleFormControlFile1">
+  </div>
+</form>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js" integrity="sha384-XEerZL0cuoUbHE4nZReLT7nx9gQrQreJekYhJD9WNWhH8nEW+0c5qq7aIo2Wl30J" crossorigin="anonymous"></script>
+  </body>
+</html>
