@@ -1,6 +1,8 @@
 from flask import Flask,render_template, request,redirect, session
 import backend
 import os
+from datetime import date
+import shutil
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -41,6 +43,8 @@ def login():
     rows = backend.search(data['email'],data['password'])
     if len(rows)==1:
         session['user_id'] = get_fname(rows[0][3])
+        session['user_pk'] = rows[0][0]
+        session['user_email'] = rows[0][1]
         return redirect('/dashboard.html')
     else:
         return redirect('/')
@@ -48,23 +52,19 @@ def login():
 @app.route('/dashboard.html')
 def dashboard():
     if 'user_id' in session:
-        return render_template('dashboard.html',name=session['user_id'])
+        data = backend.display_all_posts()
+        return render_template('dashboard.html',pk=session['user_pk'],name=session['user_id'],data=data)
     else:
         return redirect('/index.html')
 
 @app.route('/logout',methods=['POST'])
 def logout():
     session.pop('user_id')
+    session.pop('user_pk')
+    session.pop('user_email')
     return redirect('/index.html')
 
 
-@app.route('/gotohome',methods=['GET'])
-def gotohome():
-    return redirect('/dashboard.html/'+session['user_id'])
-
-@app.route('/dashboard.html/gotonewpost',methods=['GET'])
-def gotonewpost():
-    return redirect('/newpost.html/'+session['user_id'])
 
 @app.route('/newpost.html')
 def opennewpost():
@@ -73,11 +73,24 @@ def opennewpost():
     else:
         return redirect('/index.html')
 
+
+@app.route('/addapost',methods=['POST'])
+def addpost():
+    data = request.form.to_dict()
+    backend.insert_in_post(session['user_pk'],session['user_id'],session['user_email'],date.today(),data['text'],0,0)
+    return redirect('/viewall.html')
+
 @app.route('/viewall.html')
 def viewall():
+    data = backend.display_user_posts(session['user_pk'])
     if 'user_id' in session:
-        return render_template('viewall.html',name=session['user_id'])
+        return render_template('viewall.html',data=data,name=session['user_id'])
     else:
         return redirect('/index.html')
+
+@app.route('/increaselike/<int:post_id>',methods=['POST'])
+def increaselike(post_id):
+    backend.updatedislikes(post_id)
+    return redirect('dashboard.html')
 
 app.run(debug=True)

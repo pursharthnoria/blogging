@@ -33,6 +33,17 @@
     </form>
   </div>
 </nav>
+
+{% for post in data %}
+  <div class="jumbotron">
+  <h3 class="display-5">{{post[2]}}</h3>
+  <p class="lead">{{post[5]}}</p>
+  <hr class="my-4">
+  <p> uploaded on: {{post[4]}}</p>
+  <p> Likes: {{post[6]}}   Dislikes: {{post[7]}}</p>
+</div>
+{% endfor %}
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
