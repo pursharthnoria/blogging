@@ -90,7 +90,13 @@ def viewall():
 
 @app.route('/increaselike/<int:post_id>',methods=['POST'])
 def increaselike(post_id):
+    backend.updatelikes(post_id)
+    return redirect('/dashboard.html')
+
+@app.route('/increasedislike/<int:post_id>',methods=['POST'])
+def increasedislike(post_id):
     backend.updatedislikes(post_id)
-    return redirect('dashboard.html')
+    return redirect('/dashboard.html')
+
 
 app.run(debug=True)
