@@ -98,5 +98,5 @@ def increasedislike(post_id):
     backend.updatedislikes(post_id)
     return redirect('/dashboard.html')
 
-
-app.run(debug=True)
+if __name__=="__main__":
+    app.run(debug=True)
